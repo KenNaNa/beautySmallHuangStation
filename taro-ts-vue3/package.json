@@ -1,8 +1,8 @@
 {
-  "name": "taro-ts-vue3",
+  "name": "taro-vue3",
   "version": "1.0.0",
   "private": true,
-  "description": "美女小黄站",
+  "description": "",
   "templateInfo": {
     "name": "default",
     "typescript": true,
@@ -13,7 +13,7 @@
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
-    "build:h5": "taro build --type h5",
+    "build:h5": "node ./config/h5-building-script.js && taro build --type h5",
     "build:rn": "taro build --type rn",
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
@@ -36,25 +36,32 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@tarojs/components": "3.2.0",
-    "@tarojs/runtime": "3.2.0",
-    "@tarojs/taro": "3.2.0",
-    "vue": "^3.0.0"
+    "@tarojs/components": "3.1.5",
+    "@tarojs/runtime": "3.1.5",
+    "@tarojs/taro": "3.1.5",
+    "axios": "^0.21.1",
+    "mockjs": "^1.1.0",
+    "postcss-pxtorem": "^6.0.0",
+    "taro-ui-vue3": "^1.0.0-alpha.19",
+    "vant": "^3.0.11",
+    "vue": "^3.0.0",
+    "vue-router": "^4.0.5",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "@tarojs/mini-runner": "3.2.0",
     "@babel/core": "^7.8.0",
-    "@tarojs/webpack-runner": "3.2.0",
-    "babel-preset-taro": "3.2.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "vue-loader": "^16.0.0-beta.8",
-    "eslint-plugin-vue": "^7.0.0",
-    "eslint-config-taro": "3.2.0",
-    "eslint": "^6.8.0",
-    "stylelint": "9.3.0",
-    "@typescript-eslint/parser": "^4.15.1",
+    "@tarojs/mini-runner": "3.1.5",
+    "@tarojs/webpack-runner": "3.1.5",
+    "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "typescript": "^4.1.0"
+    "@typescript-eslint/parser": "^4.15.1",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-preset-taro": "3.1.5",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.1.5",
+    "eslint-plugin-vue": "^7.0.0",
+    "stylelint": "9.3.0",
+    "typescript": "^4.1.0",
+    "vue-loader": "^16.0.0-beta.8"
   }
 }
