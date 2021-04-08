@@ -17,7 +17,7 @@ import { ref, getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const state = ref({
-  checked: ""
+  checked: "",
 });
 const { ctx } = getCurrentInstance();
 
@@ -28,13 +28,13 @@ const change = (e: string) => {
       console.log("男");
       ctx.$toast({
         type: "text",
-        message: "暂无帅哥"
+        message: "暂无帅哥",
       });
       break;
     case 2:
       console.log("女");
       setTimeout(() => {
-        router.push("/");
+        router.push("/framework/home");
       }, 1000);
       break;
     default:
