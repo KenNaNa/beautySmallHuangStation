@@ -3,7 +3,6 @@
     <search-input v-model="state.searchValue"></search-input>
     <banner :bannerData="state.bannerData"></banner>
     <van-loading color="#1989fa" v-if="state.loading" />
-    <tab-bar v-model="state.active" :tab-list="tabList"></tab-bar>
   </div>
 </template>
 <script lang="ts" setup="props">
@@ -17,37 +16,12 @@ import {
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { getBannerList } from "../../api/index";
-interface TabList {
-  name?: string;
-  icon?: string;
-  text?: string;
-}
-
-let tabList: Array<TabList> = [
-  {
-    name: "home",
-    icon: "home-o",
-    text: "首页",
-  },
-  {
-    name: "add",
-    icon: "add-o",
-    text: "添加",
-  },
-  {
-    name: "setting",
-    icon: "setting-o",
-    text: "中心",
-  },
-];
 
 import SearchInput from "@/components/SearchInput/index.vue";
-import TabBar from "@/components/TabBar/index.vue";
 
 defineComponent({
   components: {
     "search-input": SearchInput,
-    "tab-bar": TabBar,
   },
 });
 
@@ -63,8 +37,6 @@ const state = reactive({
   bannerData: [],
   loading: false,
   searchValue: "",
-  active: "home",
-  tabList: tabList,
 });
 
 const initFN = () => {
