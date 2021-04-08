@@ -2,14 +2,39 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '/',
-        name: 'Home',
-        meta: {
-            title: "首页",
-            keepAlive: true,
-            requireAuth: true
-        },
-        component: () => import("../views/Home/index.vue")
+        path: '/framework',
+        name: 'FrameWork',
+        redirect: 'home',
+        component: () => import("@/views/FrameWork/index.vue"),
+        children: [
+            {
+                path: 'home',
+                name: 'Home',
+                meta: {
+                    title: "首页",
+                    keepAlive: true
+                },
+                component: () => import("@/views/Home/index.vue")
+            },
+            {
+                path: 'center',
+                name: 'Center',
+                meta: {
+                    title: "中心",
+                    keepAlive: true
+                },
+                component: () => import("@/views/Center/index.vue")
+            },
+            {
+                path: 'add',
+                name: 'Add',
+                meta: {
+                    title: "添加",
+                    keepAlive: true
+                },
+                component: () => import("@/views/Add/index.vue")
+            }
+        ]
     },
     {
         path: '/select',
@@ -19,7 +44,7 @@ const routes: Array<RouteRecordRaw> = [
             keepAlive: true,
             requireAuth: true
         },
-        component: () => import("../views/Select/index.vue")
+        component: () => import("@/views/Select/index.vue")
     },
     {
         path: '/detail/:id/:item',
@@ -29,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
             keepAlive: true,
             requireAuth: true
         },
-        component: () => import("../views/Detail/index.vue")
+        component: () => import("@/views/Detail/index.vue")
     },
     {
         path: '/login',
@@ -38,8 +63,44 @@ const routes: Array<RouteRecordRaw> = [
             title: "登录",
             keepAlive: true
         },
-        component: () => import("../views/Login/index.vue")
-    }
+        component: () => import("@/views/Login/index.vue")
+    },
+    {
+        path: '/accountdetail',
+        name: 'AccountDetail',
+        meta: {
+            title: "登录",
+            keepAlive: true
+        },
+        component: () => import("@/views/AccountDetail/index.vue")
+    },
+    {
+        path: '/myalbum',
+        name: 'MyAlbum',
+        meta: {
+            title: "我的专辑",
+            keepAlive: true
+        },
+        component: () => import("@/views/MyAlbum/index.vue")
+    },
+    {
+        path: '/mycollection',
+        name: 'MyCollection',
+        meta: {
+            title: "我的收藏",
+            keepAlive: true
+        },
+        component: () => import("@/views/MyCollection/index.vue")
+    },
+    {
+        path: '/myorder',
+        name: 'MyOrder',
+        meta: {
+            title: "我的订单",
+            keepAlive: true
+        },
+        component: () => import("@/views/MyOrder/index.vue")
+    },
 ]
 
 const router = createRouter({
