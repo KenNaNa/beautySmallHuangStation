@@ -1,8 +1,10 @@
 <template>
   <div class="detail-wrap">
     <nav-bar :title="item.title" @click-left="clickLeft"></nav-bar>
-    <div class="img" v-for="(img, index) in item.imgs" :key="index">
-      <img :src="img" class="img" />
+    <div class="img-wrap">
+      <div class="img" v-for="(img, index) in item.imgs" :key="index">
+        <img :src="img" class="img" />
+      </div>
     </div>
     <action-bar
       @onTalk="onTalk"
@@ -80,6 +82,9 @@ export default {
 .detail-wrap {
   width: 100%;
   padding-bottom: 55.2px;
+  .img-wrap {
+    margin-top: 50px;
+  }
   .title {
     position: fixed;
     top: 0;
@@ -97,4 +102,3 @@ export default {
   }
 }
 </style>
-
