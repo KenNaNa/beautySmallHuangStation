@@ -25,6 +25,28 @@
 
 个人中心，随机生成头像，详情简介，我的相册，我的收藏，
 
+- components/ActionBar
+- components/Banner
+- components/NavBar
+- components/SearchInput
+- components/SelfIntrodution
+- components/TabBar
+
+- utils/rem.ts
+- views/AccountDetail
+- views/Add
+- views/Center
+- views/Detail
+- views/FrameWork
+- views/Home
+- views/Login
+- views/MyAlbum
+- views/MyCollection
+- views/MyOrder
+- views/Select
+
+
+
 
 
 
