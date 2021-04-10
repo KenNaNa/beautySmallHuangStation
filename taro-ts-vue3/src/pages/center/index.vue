@@ -1,111 +1,65 @@
 <template>
-  <view class="login">
-    <view class="passw-name-box">
-      <view class="name">
-        <AtInput
-          title="昵称"
-          name="userName"
-          v-model:value="state.userName"
-          type="text"
-          placeholder="请输入用户名"
-        />
-      </view>
-      <view class="name">
-        <AtInput
-          name="passWord"
-          title="密码"
-          v-model:value="state.passWord"
-          type="password"
-          placeholder="请输入密码"
-        />
-      </view>
-      <view class="btn">
-        <AtButton type="primary" formType="submit" @click="login"
-          >提交</AtButton
-        >
-      </view>
-    </view>
+  <view class="center-wrap">
+    <self-introduction @click-right-arrow="clickRightArrow"></self-introduction>
+
+    <!-- 我的专辑 -->
+    <van-cell center class="same" title="我的专辑" is-link @click="toMyAlbum" />
+
+    <!-- 我的收藏 -->
+    <van-cell
+      center
+      class="same"
+      title="我的收藏"
+      is-link
+      @click="toMyCollection"
+    />
+
+    <!-- 我的订单 -->
+    <van-cell center class="same" title="我的订单" is-link @click="toMyOrder" />
   </view>
 </template>
-
-<script>
-import { reactive, getCurrentInstance } from "vue";
-import { useRouter } from "vue-router";
-import { AtInput, AtButton } from "taro-ui-vue3";
-import { toLogin } from "../../api/index";
+<script lang="ts">
+import { defineComponent, getCurrentInstance } from "vue";
+import SelfIntroduction from "../../components/SelfIntroduction/index.vue";
 import "./index.scss";
 
-export default {
-  name: "Login",
+export default defineComponent({
+  name: "Center",
   components: {
-    AtInput,
-    AtButton,
+    "self-introduction": SelfIntroduction,
   },
   setup() {
-    const router = useRouter();
-    console.log("router", router);
-
     const { ctx } = getCurrentInstance();
-
-    const state = reactive({
-      userName: "",
-      passWord: "",
-    });
-
-    const initError = () => {
-      ctx.$toast({
-        type: "fail",
-        message: "登录失败",
-      });
-      window.localStorage.clear();
+    const clickRightArrow = () => {
       ctx.$taro.navigateTo({
-        url: "pages/login/index",
+        url: "/pages/accountDetail/index",
       });
     };
 
-    const login = async () => {
-      if (!state.userName) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入用户名",
-        });
-        return;
-      }
+    const toMyAlbum = () => {
+      ctx.$taro.navigateTo({
+        url: "/pages/myAlbum/index",
+      });
+    };
 
-      if (!state.passWord) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入密码",
-        });
-        return;
-      }
-      toLogin({ userName: state.userName, passWord: state.passWord })
-        .then(
-          (res) => {
-            ctx.$toast({
-              type: "success",
-              message: "登录成功",
-            });
+    const toMyCollection = () => {
+      ctx.$taro.navigateTo({
+        url: "/pages/myCollection/index",
+      });
+    };
 
-            // 设置 token
-            window.localStorage.setItem("accessToken", res.data.token);
-            ctx.$taro.navigateTo({
-              url: "/pages/select/index",
-            });
-          },
-          (error) => {
-            initError();
-          }
-        )
-        .catch((error) => {
-          initError();
-        });
+    const toMyOrder = () => {
+      ctx.$taro.navigateTo({
+        url: "/pages/myOrder/index",
+      });
     };
 
     return {
-      login,
-      state,
+      clickRightArrow,
+      toMyAlbum,
+      toMyCollection,
+      toMyOrder,
     };
   },
-};
+});
 </script>
