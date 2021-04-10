@@ -1,110 +1,76 @@
 <template>
-  <view class="login">
-    <view class="passw-name-box">
-      <view class="name">
-        <AtInput
-          title="昵称"
-          name="userName"
-          v-model:value="state.userName"
-          type="text"
-          placeholder="请输入用户名"
-        />
-      </view>
-      <view class="name">
-        <AtInput
-          name="passWord"
-          title="密码"
-          v-model:value="state.passWord"
-          type="password"
-          placeholder="请输入密码"
-        />
-      </view>
-      <view class="btn">
-        <AtButton type="primary" formType="submit" @click="login"
-          >提交</AtButton
-        >
-      </view>
+  <view class="detail-wrap">
+    <nav-bar :title="item.title" @click-left="clickLeft"></nav-bar>
+    <view class="img" v-for="(img, index) in item.imgs" :key="index">
+      <image :src="img" class="img" />
     </view>
+    <action-bar
+      @onTalk="onTalk"
+      @onLike="onLike"
+      @onCollect="onCollect"
+      @onBuy="onBuy"
+    ></action-bar>
   </view>
 </template>
 
-<script>
-import { reactive, getCurrentInstance } from "vue";
-import { useRouter } from "vue-router";
-import { AtInput, AtButton } from "taro-ui-vue3";
-import { toLogin } from "../../api/index";
+<script lang="ts">
+import { reactive, toRefs, computed, getCurrentInstance } from "vue";
+import ActionBar from "../../components/ActionBar/index.vue";
+import NavBar from "../../components/NavBar/index.vue";
 import "./index.scss";
-
 export default {
-  name: "Login",
+  name: "Detail",
   components: {
-    AtInput,
-    AtButton,
+    ActionBar,
+    NavBar,
   },
   setup() {
-    const router = useRouter();
-    console.log("router", router);
+    interface Data {
+      id?: string | Array<string>;
+      item?: Object;
+    }
+    let data: Data = {
+      id: "",
+      item: Object,
+    };
+    const state = reactive(data);
 
     const { ctx } = getCurrentInstance();
-
-    const state = reactive({
-      userName: "",
-      passWord: "",
-    });
-
-    const initError = () => {
-      ctx.$toast({
-        type: "fail",
-        message: "登录失败",
-      });
-      window.localStorage.clear();
-      ctx.$taro.navigateTo({
-        url: "pages/login/index",
-      });
+    state.item = computed(() =>
+      JSON.parse(ctx.$taro.getCurrentInstance().router.params.item)
+    ).value;
+    state.id = computed(() => state.item.id).value;
+    // 评论
+    const onTalk = (e: any) => {
+      console.log(e);
+    };
+    // 点赞
+    const onLike = (e: any) => {
+      console.log(e);
+    };
+    // 收集
+    const onCollect = (e: any) => {
+      console.log(e);
     };
 
-    const login = async () => {
-      if (!state.userName) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入用户名",
-        });
-        return;
-      }
-
-      if (!state.passWord) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入密码",
-        });
-        return;
-      }
-      toLogin({ userName: state.userName, passWord: state.passWord })
-        .then(
-          (res) => {
-            ctx.$toast({
-              type: "success",
-              message: "登录成功",
-            });
-
-            // 设置 token
-            window.localStorage.setItem("accessToken", res.data.token);
-            ctx.$taro.navigateTo({
-              url: "/pages/select/index",
-            });
-          },
-          (error) => {
-            initError();
-          }
-        )
-        .catch((error) => {
-          initError();
-        });
+    // 购买
+    const onBuy = (e: any) => {
+      console.log(e);
     };
 
+    // 点击返回按钮
+    const clickLeft = () => {
+      ctx.$taro.navigateBack({
+        delta: 1,
+      });
+    };
     return {
-      login,
-      state,
+      ...toRefs(state),
+      clickLeft,
+      onBuy,
+      onCollect,
+      onLike,
+      onTalk,
     };
   },
 };
