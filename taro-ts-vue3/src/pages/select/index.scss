@@ -1,59 +1,17 @@
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.select-wrap {
+  width: 100%;
   height: 100%;
-  background: url("../../../public/login/bgimg.jpg") no-repeat;
-  background-size: 100% 100%;
-  background-position: 100% 100%;
+  background-color: #ebfff0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 
-  .van-button {
-    width: 250px;
+  .van-radio__label {
+    font-size: 30px;
   }
 
-  .btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .at-button {
-      width: 250px;
-    }
-  }
-
-  .passw-name-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .name {
-      display: flex;
-      justify-content: center;
-      padding: 5px 10px;
-
-      .at-input__title {
-        text-align: center;
-      }
-
-      .at-input input {
-        text-align: left;
-      }
-
-      .name-img {
-        display: block;
-        width: 32px;
-        height: 32px;
-        background: url("../../../public/login/sno.png") no-repeat;
-        background-size: 100% 100%;
-      }
-
-      .passw-img {
-        display: block;
-        width: 32px;
-        height: 32px;
-        background: url("../../../public/login/pasw.png") no-repeat;
-        background-size: 100% 100%;
-      }
-    }
+  .van-radio-group {
+    height: 100%;
   }
 }
