@@ -1,111 +1,62 @@
 <template>
-  <view class="login">
-    <view class="passw-name-box">
-      <view class="name">
-        <AtInput
-          title="昵称"
-          name="userName"
-          v-model:value="state.userName"
-          type="text"
-          placeholder="请输入用户名"
-        />
-      </view>
-      <view class="name">
-        <AtInput
-          name="passWord"
-          title="密码"
-          v-model:value="state.passWord"
-          type="password"
-          placeholder="请输入密码"
-        />
-      </view>
-      <view class="btn">
-        <AtButton type="primary" formType="submit" @click="login"
-          >提交</AtButton
-        >
-      </view>
-    </view>
+  <view class="home">
+    <AtSearchBar v-model:value="state.value" @action-click="onActionClick" />
+    <banner :bannerData="state.bannerData"></banner>
+    <van-loading color="#1989fa" v-if="state.loading" />
   </view>
 </template>
-
-<script>
-import { reactive, getCurrentInstance } from "vue";
-import { useRouter } from "vue-router";
-import { AtInput, AtButton } from "taro-ui-vue3";
-import { toLogin } from "../../api/index";
+<script lang="ts" setup="props">
+import { reactive, onMounted, getCurrentInstance, defineComponent } from "vue";
+import { getBannerList } from "../../api/index";
 import "./index.scss";
+import { AtSearchBar } from "taro-ui-vue3";
 
-export default {
-  name: "Login",
-  components: {
-    AtInput,
-    AtButton,
-  },
-  setup() {
-    const router = useRouter();
-    console.log("router", router);
+defineComponent({
+  AtSearchBar,
+});
+// 获取上下文对象
+const { ctx } = getCurrentInstance();
 
-    const { ctx } = getCurrentInstance();
+// 定义响应式数据
+const state = reactive({
+  color: "#ccc",
+  bannerData: [],
+  loading: false,
+  value: "",
+});
 
-    const state = reactive({
-      userName: "",
-      passWord: "",
-    });
-
-    const initError = () => {
-      ctx.$toast({
-        type: "fail",
-        message: "登录失败",
-      });
-      window.localStorage.clear();
-      ctx.$taro.navigateTo({
-        url: "pages/login/index",
-      });
-    };
-
-    const login = async () => {
-      if (!state.userName) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入用户名",
-        });
-        return;
-      }
-
-      if (!state.passWord) {
-        ctx.$toast({
-          type: "text",
-          message: "请输入密码",
-        });
-        return;
-      }
-      toLogin({ userName: state.userName, passWord: state.passWord })
-        .then(
-          (res) => {
-            ctx.$toast({
-              type: "success",
-              message: "登录成功",
-            });
-
-            // 设置 token
-            window.localStorage.setItem("accessToken", res.data.token);
-            ctx.$taro.navigateTo({
-              url: "/pages/select/index",
-            });
-          },
-          (error) => {
-            initError();
-          }
-        )
-        .catch((error) => {
-          initError();
-        });
-    };
-
-    return {
-      login,
-      state,
-    };
-  },
+const onActionClick = (e: any) => {
+  console.log("onActionClick", e);
 };
+
+const initFN = () => {
+  ctx.$toast({
+    type: "fail",
+    message: "请求失败",
+  });
+  state.loading = false;
+};
+
+// DOM 加载完成后更新数据
+onMounted(() => {
+  state.loading = true;
+  getBannerList()
+    .then(
+      (res: any) => {
+        state.loading = false;
+        state.bannerData = res.data;
+        console.log("bannerData", state.bannerData);
+        ctx.$toast({
+          type: "success",
+          message: "请求成功",
+        });
+      },
+      () => {
+        initFN();
+      }
+    )
+    .catch(() => {
+      initFN();
+    });
+});
 </script>
