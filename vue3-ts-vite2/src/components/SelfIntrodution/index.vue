@@ -1,32 +1,69 @@
 <template>
-  <div class="search-input-wrap">
-    <van-search
-      :value="value"
-      v-bind="$attrs"
-      placeholder="请输入搜索关键词"
-      :clearable="true"
-      :autofocus="true"
-      input-align="left"
-      @input="input"
-    />
+  <div class="self-introduction-wrap">
+    <img width="80" height="80" src="../../assets/img.jpg" />
+    <div class="text">
+      <span class="account">{{ account }}</span>
+      <span class="introduction">{{ introduction }}</span>
+    </div>
+    <van-icon name="arrow" size="24" @click="clickRight" />
   </div>
 </template>
-<script lang="ts">
-import { ref, defineComponent, getCurrentInstance } from "vue";
+<script>
+import { defineComponent, getCurrentInstance } from "vue";
 export default defineComponent({
-  name: "SearchInput",
-  setup() {
-    let value = ref("");
-    let { ctx } = getCurrentInstance();
-    let input = (e: any) => {
-      ctx.$emit("input", e.target.value);
+  props: {
+    imgSrc: {
+      type: String,
+      default: "../../assets/img.jpg",
+    },
+    account: {
+      type: String,
+      default: "账号：123123456",
+    },
+    introduction: {
+      type: String,
+      default: "简介：我是一只小小小小鸟",
+    },
+  },
+  name: "SelfIntroduction",
+  setup(props) {
+    const { ctx } = getCurrentInstance();
+    const clickRight = (e) => {
+      ctx.$emit("click-right-arrow", e);
     };
+
     return {
-      value,
-      input,
+      clickRight,
     };
   },
 });
 </script>
 <style lang="scss" scoped>
+.self-introduction-wrap {
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+  img {
+    border-radius: 10px;
+  }
+  .text {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    span {
+      text-align: left;
+    }
+    span.account {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    span.introdution {
+      font-size: 14px;
+    }
+  }
+}
 </style>
