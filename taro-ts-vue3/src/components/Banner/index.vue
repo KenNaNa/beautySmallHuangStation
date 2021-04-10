@@ -1,37 +1,43 @@
 <template>
-  <div class="swipe-content">
-    <van-swipe class="my-swipe" :autoplay="2000" indicator-color="white" lazy-render>
+  <view class="swipe-content">
+    <van-swipe
+      class="my-swipe"
+      :autoplay="2000"
+      indicator-color="white"
+      lazy-render
+    >
       <van-swipe-item v-for="item in bannerData" :key="item.id">
-        <img :src="item.images" class="img" :alt="item.title" @click="toDetail(item)" />
+        <img
+          :src="item.images"
+          class="img"
+          :alt="item.title"
+          @click="toDetail(item)"
+        />
       </van-swipe-item>
     </van-swipe>
-  </div>
+  </view>
 </template>
 <script>
-import { useRouter } from "vue-router";
+import { getCurrentInstance } from "vue";
 export default {
   name: "Banner",
   props: {
     bannerData: {
-      type: Array
-    }
+      type: Array,
+    },
   },
   setup(props) {
-    const router = useRouter();
-    const toDetail = item => {
-      router.push({
-        name: "Detail",
-        params: {
-          id: item.id,
-          item: JSON.stringify(item)
-        }
+    const { ctx } = getCurrentInstance();
+    const toDetail = (item) => {
+      ctx.$taro.navigateTo({
+        url: `/pages/detail/index?item=${JSON.stringify(item)}`,
       });
     };
 
     return {
-      toDetail
+      toDetail,
     };
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
