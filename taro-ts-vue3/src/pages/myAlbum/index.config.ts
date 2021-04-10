@@ -1,4 +1,3 @@
 export default {
-  navigationBarTitleText: '登录'
+    navigationBarTitleText: '我的专辑'
 }
-
