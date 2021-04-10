@@ -30,7 +30,6 @@
 
 <script>
 import { reactive, getCurrentInstance } from "vue";
-import { useRouter } from "vue-router";
 import { AtInput, AtButton } from "taro-ui-vue3";
 import { toLogin } from "../../api/index";
 import "./index.scss";
@@ -42,9 +41,6 @@ export default {
     AtButton,
   },
   setup() {
-    const router = useRouter();
-    console.log("router", router);
-
     const { ctx } = getCurrentInstance();
 
     const state = reactive({
