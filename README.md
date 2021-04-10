@@ -46,6 +46,21 @@
 - views/Select
 
 
+# 技术栈
+
+### 前端
+
+- vue3+ts+vite2
+
+- taro+vue3
+
+### 后端
+
+- node
+- koa2
+- mmongodb
+
+
 
 
 
