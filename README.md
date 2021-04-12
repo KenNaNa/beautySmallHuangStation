@@ -6,6 +6,8 @@
 
 [vue + koa2 实现 session | token 登陆状态验证](https://segmentfault.com/a/1190000020231569)
 
+[mongoose增加，查询，删除，更新数据](https://blog.csdn.net/weixin_42235173/article/details/90762674)
+
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
 
 - 搜索美女图片功能 
