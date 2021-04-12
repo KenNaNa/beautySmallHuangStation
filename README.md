@@ -60,7 +60,8 @@
 
 - node
 - koa2
-- mmongodb
+- mongodb
+- mongoose
 
 ### 后端项目目录
 
