@@ -43,6 +43,11 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .search-input-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   padding: 0 10px 0 0;
   display: flex;
   justify-content: space-between;
