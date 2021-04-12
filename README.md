@@ -4,6 +4,8 @@
 
 ![](https://lh3.googleusercontent.com/proxy/g3UarglUxpOovTXAA6eUfJxPYG2hQ8Kw4nUp16mkuQ3mpINipYv-2PXT1HWRvoVphhMfeo1R0VqJz-oWZnhdsQn9royFtPUgaums)
 
+# 一些教程
+
 [大前端技术为主，读书笔记、随笔、理财为辅，做个终身学习者。](https://github.com/biaochenxuying/blog)
 
 [基于Koa2+MongoDB实现用户注册登录](https://www.jianshu.com/p/f5dae33a1e1e)
@@ -15,6 +17,8 @@
 [websocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
 
 [阮一峰 websocket 教程](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
+# 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
 
@@ -29,6 +33,7 @@
 - 用户中心
 - 创建相册
 
+# 公众号
 
 前端入门到进阶图文教程，超详细的Web前端学习笔记。
 
@@ -36,31 +41,11 @@
 
 公众号「人生代码」作者。
 
-流程
+# 流程
 
 创建用户可以创建相册，可以给这个相册上传图片，可以给这些相册设置 vip 权限，或者免费权限，或者设置部分付费
 
 个人中心，随机生成头像，详情简介，我的相册，我的收藏，
-
-- components/ActionBar
-- components/Banner
-- components/NavBar
-- components/SearchInput
-- components/SelfIntrodution
-- components/TabBar
-
-- utils/rem.ts
-- views/AccountDetail
-- views/Add
-- views/Center
-- views/Detail
-- views/FrameWork
-- views/Home
-- views/Login
-- views/MyAlbum
-- views/MyCollection
-- views/MyOrder
-- views/Select
 
 
 # 技术栈
