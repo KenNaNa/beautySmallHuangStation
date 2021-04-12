@@ -69,6 +69,32 @@
 - koa2
 - mmongodb
 
+### 后端项目目录
+
+- bin
+  - www
+- config
+  - session.config.js
+  - token.coonfig.js
+- controller
+- dbhelper
+  - dbconfig.js
+  - dbconnect.js
+- model
+  - banners.js
+  - user.js
+
+- routes
+  - banners.js
+  - index.js
+  - user.js
+- utils
+  - genSession.js
+  - getToken.js
+  - verifyToken.js
+- app.js
+- package.json
+
 ### 每日 todo
 
 - 完成注册
