@@ -8,6 +8,7 @@
       :autofocus="true"
       input-align="left"
       @input="input"
+      @change="change"
       class="search"
     />
     <van-icon name="play-circle-o" size="20" @click="logout" />
@@ -27,6 +28,10 @@ export default defineComponent({
       ctx.$emit("input", e.target.value);
     };
 
+    let change = (e: any) => {
+      ctx.$emit("change", e.target.value);
+    };
+
     let logout = () => {
       window.localStorage.clear();
       if (route.path !== "/login") {
@@ -37,6 +42,7 @@ export default defineComponent({
       value,
       input,
       logout,
+      change,
     };
   },
 });
