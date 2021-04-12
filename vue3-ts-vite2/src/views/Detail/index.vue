@@ -12,36 +12,38 @@
       @onCollect="onCollect"
       @onBuy="onBuy"
     ></action-bar>
+    <van-loading color="#1989fa" v-if="loading" />
   </div>
 </template>
 
 <script lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import { reactive, toRefs, computed } from "vue";
+import { reactive, toRefs, computed, onMounted } from "vue";
 import ActionBar from "@/components/ActionBar/index.vue";
 import NavBar from "@/components/NavBar/index.vue";
+import { getDetailById } from "@/api/banner";
 export default {
   name: "Detail",
   components: {
     "action-bar": ActionBar,
     "nav-bar": NavBar,
   },
-  setup(props) {
+  setup() {
     interface Data {
       id?: string | Array<string>;
-      item?: string | string[];
+      item?: Object;
+      loading?: Boolean;
     }
     let data: Data = {
       id: "",
-      item: "",
+      item: {},
+      loading: false,
     };
     const state = reactive(data);
 
     const route = useRoute();
     const router = useRouter();
-    const item = computed(() => route.params.item).value;
     state.id = computed(() => route.params.id).value;
-    state.item = JSON.parse(item);
 
     // 评论
     const onTalk = (e: any) => {
@@ -65,6 +67,20 @@ export default {
     const clickLeft = () => {
       router.go(-1);
     };
+
+    // onMounted 加载数据
+    onMounted(() => {
+      state.loading = true;
+      getDetailById({ id: state.id })
+        .then((res) => {
+          state.loading = false;
+          console.log("res", res);
+          state.item = res.banners[0];
+        })
+        .catch(() => {
+          state.loading = false;
+        });
+    });
 
     return {
       ...toRefs(state),
