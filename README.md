@@ -60,6 +60,10 @@
 - koa2
 - mmongodb
 
+### 每日 todo
+
+- 完成注册
+
 
 
 
