@@ -2,6 +2,10 @@
 
 [大前端技术为主，读书笔记、随笔、理财为辅，做个终身学习者。](https://github.com/biaochenxuying/blog)
 
+[基于Koa2+MongoDB实现用户注册登录](https://www.jianshu.com/p/f5dae33a1e1e)
+
+[vue + koa2 实现 session | token 登陆状态验证](https://segmentfault.com/a/1190000020231569)
+
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
 
 - 搜索美女图片功能 
