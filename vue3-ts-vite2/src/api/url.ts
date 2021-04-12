@@ -17,6 +17,10 @@ const url = {
         getBannerList: {
             url: '/banner/banners',
             method: 'get'
+        },
+        getDetailById: {
+            url: '/banner/detail',
+            method: 'post'
         }
     }
 };
