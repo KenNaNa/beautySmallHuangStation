@@ -15,7 +15,7 @@ import {
 } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { getBannerList } from "../../api/index";
+import { getBannerList } from "../../api/banner";
 
 import SearchInput from "@/components/SearchInput/index.vue";
 
@@ -54,7 +54,7 @@ onMounted(() => {
     .then(
       (res: any) => {
         state.loading = false;
-        state.bannerData = res.data;
+        state.bannerData = res.banners;
         ctx.$toast({
           type: "success",
           message: "请求成功",
