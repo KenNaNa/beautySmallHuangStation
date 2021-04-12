@@ -8,6 +8,10 @@
 
 [mongoose增加，查询，删除，更新数据](https://blog.csdn.net/weixin_42235173/article/details/90762674)
 
+[websocket](https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket)
+
+[阮一峰 websocket 教程](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
 
 - 搜索美女图片功能 
