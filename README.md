@@ -26,6 +26,8 @@
 
 [vue+mongoose+node.js项目总结第一篇_图片文件上传](https://www.cnblogs.com/xxm980617/p/11451767.html)
 
+[](https://blog.csdn.net/chenqk_123/article/details/108595966)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
