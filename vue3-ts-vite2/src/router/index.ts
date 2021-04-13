@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-
+import { isLogin } from '../api/user';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        redirect: '/login',
+        redirect: '/register',
     },
     {
         path: '/framework',
@@ -16,7 +16,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Home',
                 meta: {
                     title: "首页",
-                    keepAlive: true
+                    keepAlive: true,
+                    requireAuth: true
                 },
                 component: () => import("@/views/Home/index.vue")
             },
@@ -25,7 +26,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Center',
                 meta: {
                     title: "中心",
-                    keepAlive: true
+                    keepAlive: true,
+                    requireAuth: true
                 },
                 component: () => import("@/views/Center/index.vue")
             },
@@ -34,7 +36,8 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'Add',
                 meta: {
                     title: "添加",
-                    keepAlive: true
+                    keepAlive: true,
+                    requireAuth: true
                 },
                 component: () => import("@/views/Add/index.vue")
             }
@@ -51,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/Select/index.vue")
     },
     {
-        path: '/detail/:id/:item',
+        path: '/detail/:id',
         name: 'Detail',
         meta: {
             title: "选项",
@@ -70,11 +73,21 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/Login/index.vue")
     },
     {
+        path: '/register',
+        name: 'Register',
+        meta: {
+            title: "注册",
+            keepAlive: true
+        },
+        component: () => import("@/views/Register/index.vue")
+    },
+    {
         path: '/accountdetail',
         name: 'AccountDetail',
         meta: {
             title: "登录",
-            keepAlive: true
+            keepAlive: true,
+            requireAuth: true
         },
         component: () => import("@/views/AccountDetail/index.vue")
     },
@@ -83,7 +96,8 @@ const routes: Array<RouteRecordRaw> = [
         name: 'MyAlbum',
         meta: {
             title: "我的专辑",
-            keepAlive: true
+            keepAlive: true,
+            requireAuth: true
         },
         component: () => import("@/views/MyAlbum/index.vue")
     },
@@ -92,7 +106,8 @@ const routes: Array<RouteRecordRaw> = [
         name: 'MyCollection',
         meta: {
             title: "我的收藏",
-            keepAlive: true
+            keepAlive: true,
+            requireAuth: true
         },
         component: () => import("@/views/MyCollection/index.vue")
     },
@@ -101,7 +116,8 @@ const routes: Array<RouteRecordRaw> = [
         name: 'MyOrder',
         meta: {
             title: "我的订单",
-            keepAlive: true
+            keepAlive: true,
+            requireAuth: true
         },
         component: () => import("@/views/MyOrder/index.vue")
     },
@@ -116,8 +132,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
         if (window.localStorage.getItem('accessToken')) {  // 通过vuex state获取当前的token是否存在
             next();
-        }
-        else {
+        } else {
             next({
                 path: '/login',
                 query: { redirect: to.fullPath }  // 将跳转的路由path作为参数，登录成功后跳转到该路由
