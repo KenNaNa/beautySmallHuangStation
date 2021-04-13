@@ -30,6 +30,8 @@
 
 [su37josephxia/vue3-study](https://github.com/su37josephxia/vue3-study)
 
+[《微信小程序入门教程》示例库。](https://github.com/ruanyf/wechat-miniprogram-demos)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
