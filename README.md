@@ -22,6 +22,8 @@
 
 [MongoDB之数据查询（正则表达式）](https://blog.csdn.net/cuishan5183/article/details/100403446?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&dist_request_id=1331302.7649.16182772109501375&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
 
+[本地缓存](https://github.com/2ue/local-storage-js)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
