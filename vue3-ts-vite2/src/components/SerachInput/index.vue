@@ -8,7 +8,8 @@
       :autofocus="true"
       input-align="left"
       @input="input"
-      @change="change"
+      @keyup.enter="change"
+      @clear="clear"
       class="search"
     />
     <van-icon name="play-circle-o" size="20" @click="logout" />
@@ -24,12 +25,17 @@ export default defineComponent({
     let route = useRoute();
     let router = useRouter();
     let { ctx } = getCurrentInstance();
+    // 应该要用防抖策略来消除多次触发问题
     let input = (e: any) => {
       ctx.$emit("input", e.target.value);
     };
 
     let change = (e: any) => {
-      ctx.$emit("change", e.target.value);
+      ctx.$emit("change", e);
+    };
+
+    let clear = (e: any) => {
+      ctx.$emit("clear", e);
     };
 
     let logout = () => {
@@ -43,6 +49,7 @@ export default defineComponent({
       input,
       logout,
       change,
+      clear,
     };
   },
 });
