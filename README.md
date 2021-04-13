@@ -18,6 +18,8 @@
 
 [阮一峰 websocket 教程](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
 
+[模糊查询](https://blog.csdn.net/weixin_40679158/article/details/100212953?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-3.control&dist_request_id=1331302.7649.16182772109501375&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-3.control)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
