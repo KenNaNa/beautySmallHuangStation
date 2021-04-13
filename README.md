@@ -337,14 +337,16 @@ router.post('/register', async ctx => {
       date
     });
     await newUser.save().then(user => {
-      const {
-        username
-      } = user
+      let obj = {
+        username: user.username,
+        date: user.date,
+        userid: user._id
+      }
       ctx.status = 200;
       ctx.body = {
         status: 200,
         message: '注册成功',
-        username
+        userInfo: obj
       };
     }).catch(() => {
       ctx.body = {
@@ -390,12 +392,17 @@ router.post("/login", async ctx => {
       password
     });
     if (res.length > 0) {
+      let obj = {
+        username: findResult[0].username,
+        date: findResult[0].date,
+        userid: findResult[0]._id
+      }
       // 返回用户信息
       ctx.status = 200;
       ctx.body = {
         status: 200,
         message: "登录成功",
-        username: findResult[0].username,
+        userInfo: obj,
         token
       };
     } else {
