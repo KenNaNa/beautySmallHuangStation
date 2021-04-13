@@ -74,6 +74,7 @@ const login = () => {
         console.log("res===>", res);
         if (res.status === 200) {
           window.localStorage.setItem("accessToken", res.token);
+          window.localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
           tipFn(res, "success", () => {
             router.push("/select");
           });
