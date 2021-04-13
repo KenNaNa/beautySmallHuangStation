@@ -69,6 +69,8 @@
 
 - bin
   - www
+
+
 ```js
 #!/usr/bin/env node
 
@@ -164,8 +166,11 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 ```
+
 - config
   - session.config.js
+
+
 
 ```js
 const sessionConfig = {
@@ -206,9 +211,13 @@ const tokenConfig = {
 
 module.exports = tokenConfig;
 ```
+
+
 - controller
 - dbhelper
   - dbconfig.js
+
+
 
 ```js
 const dbconfig = {
@@ -220,7 +229,9 @@ const dbconfig = {
 
 module.exports = dbconfig;
 ```
+
   - dbconnect.js
+
 
 ```js
 const mongoose = require('mongoose');
@@ -243,8 +254,10 @@ const dbconnect = (app) => {
 
 module.exports = dbconnect;
 ```
+
 - model
   - banners.js
+
 
 ```js
 const mongoose = require('mongoose');
@@ -298,8 +311,10 @@ const userSchema = new Schema({
 module.exports = mongoose.model('User', userSchema);
 ```
 
+
 - routes
   - banners.js
+
 
 ```js
 const router = require('koa-router')();
@@ -332,7 +347,9 @@ router.post('/detail', async ctx => {
 
 module.exports = router;
 ```
+
   - index.js
+
 
 ```js
 const router = require('koa-router')();
@@ -345,7 +362,10 @@ router.use('/user', user.routes(), user.allowedMethods());
 router.use('/banner', banners.routes(), banners.allowedMethods());
 module.exports = router;
 ```
+
   - user.js
+
+
 
 ```js
 const router = require('koa-router')();
@@ -487,8 +507,11 @@ router.get('/isLogin', async ctx => {
 
 module.exports = router;
 ```
+
 - utils
   - genSession.js
+
+
 
 ```js
 const session = require('koa-session');
@@ -500,7 +523,10 @@ const genSession = (app) => {
 
 module.exports = genSession;
 ```
+
   - getToken.js
+
+
 
 ```js
 const jwt = require('jsonwebtoken');
@@ -526,7 +552,11 @@ const verifyToken = (token) => {
 
 module.exports = verifyToken;
 ```
+
+
 - app.js
+
+
 
 ```js
 const Koa = require('koa')
@@ -571,7 +601,10 @@ app.on('error', (err, ctx) => {
 
 module.exports = app;
 ```
+
 - package.json
+
+
 
 ```json
 {
@@ -606,6 +639,7 @@ module.exports = app;
 }
 
 ```
+
 
 ### 每日 todo
 
