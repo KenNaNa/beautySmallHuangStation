@@ -22,6 +22,12 @@ const url = {
             url: '/banner/detail',
             method: 'post'
         }
+    },
+    search: {
+        search: {
+            url: '/searchs/search',
+            method: 'post'
+        }
     }
 };
 
