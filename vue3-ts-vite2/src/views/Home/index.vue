@@ -1,7 +1,19 @@
 <template>
   <div class="home">
-    <search-input v-model="state.searchValue"></search-input>
-    <banner :bannerData="state.bannerData"></banner>
+    <search-input
+      @clear="clear"
+      @change="change"
+      v-model="state.searchValue"
+    ></search-input>
+    <banner
+      :bannerData="state.bannerData"
+      v-if="state.bannerData.length"
+    ></banner>
+    <van-empty
+      image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJs-dP9xYTISMvhxJ4KzqobVP2rO_KbHC5ZWJoySgLjbY5-VHsne_5UFdW0y3fzwoNOD8&usqp=CAU"
+      description="暂无数据"
+      v-else
+    />
     <van-loading color="#1989fa" v-if="state.loading" />
   </div>
 </template>
@@ -16,6 +28,7 @@ import {
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { getBannerList } from "../../api/banner";
+import { getBannerBySearch } from "../../api/search";
 
 import SearchInput from "@/components/SearchInput/index.vue";
 
@@ -38,6 +51,22 @@ const state = reactive({
   loading: false,
   searchValue: "",
 });
+
+// 搜索查询
+const change = (e: any) => {
+  getBannerBySearch({ keyword: e.target.value }).then((res: any) => {
+    console.log("change===>", res);
+    state.bannerData = res.banners;
+  });
+};
+
+// 清楚搜索
+const clear = (e: any) => {
+  getBannerBySearch({ keyword: state.searchValue }).then((res: any) => {
+    console.log("clear===>", res);
+    state.bannerData = res.banners;
+  });
+};
 
 const initFN = () => {
   ctx.$toast({
@@ -71,6 +100,9 @@ onMounted(() => {
 });
 </script>
 <style lang="scss" scoped>
+:deep(.van-empty) {
+  height: 100%;
+}
 .home {
   height: 100%;
 }
