@@ -4,7 +4,7 @@
 
 ![](https://lh3.googleusercontent.com/proxy/g3UarglUxpOovTXAA6eUfJxPYG2hQ8Kw4nUp16mkuQ3mpINipYv-2PXT1HWRvoVphhMfeo1R0VqJz-oWZnhdsQn9royFtPUgaums)
 
-# 一些教程
+# 学习资料
 
 [大前端技术为主，读书笔记、随笔、理财为辅，做个终身学习者。](https://github.com/biaochenxuying/blog)
 
