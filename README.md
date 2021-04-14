@@ -87,6 +87,8 @@
 
 - taro+vue3
 
+- react+vite2+ts
+
 ### 后端
 
 - node
