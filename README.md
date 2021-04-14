@@ -32,6 +32,8 @@
 
 [《微信小程序入门教程》示例库。](https://github.com/ruanyf/wechat-miniprogram-demos)
 
+[Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
