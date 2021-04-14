@@ -10,7 +10,7 @@
 
 [基于Koa2+MongoDB实现用户注册登录](https://www.jianshu.com/p/f5dae33a1e1e)
 
-[vue + koa2 实现 session | token 登陆状态验证](https://segmentfault.com/a/1190000020231569)
+[vue + koa2 实现 session token 登陆状态验证](https://segmentfault.com/a/1190000020231569)
 
 [mongoose增加，查询，删除，更新数据](https://blog.csdn.net/weixin_42235173/article/details/90762674)
 
