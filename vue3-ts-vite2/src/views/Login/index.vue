@@ -28,10 +28,12 @@
 <script lang="ts" setup="props">
 import { reactive, getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { toLogin } from "../../api/user";
 const router = useRouter();
 
 const { ctx } = getCurrentInstance();
+const store = useStore();
 
 const state = reactive({
   username: "",
@@ -76,8 +78,9 @@ const login = () => {
   toLogin({ username: state.username, password: state.password })
     .then(
       (res: any) => {
-        console.log("res===>", res);
         if (res.status === 200) {
+          console.log("ctx", store);
+          store.commit("SET_USERINFO", res.userInfo);
           window.localStorage.setItem("accessToken", res.token);
           window.localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
           tipFn(res, "success", () => {
