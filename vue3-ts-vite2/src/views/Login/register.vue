@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <span class="to-login" @click="toLogin">去登录</span>
     <van-form @submit="register">
       <van-field
         v-model="state.username"
@@ -44,6 +45,10 @@ const initError = (err: any) => {
   });
   window.localStorage.clear();
   router.push("/register");
+};
+
+const toLogin = () => {
+  router.push("/login");
 };
 
 const register = () => {
@@ -95,6 +100,14 @@ const register = () => {
   background: url("./login/bgimg.jpg") no-repeat;
   background-size: 100% 100%;
   background-position: 100% 100%;
+  .to-login {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: #19fab6;
+    font-size: 16px;
+    cursor: pointer;
+  }
   :deep(.van-form) {
     width: 80%;
   }
