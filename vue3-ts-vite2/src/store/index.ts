@@ -12,18 +12,18 @@ const state: STATE = {
 export default createStore({
     state,
     mutations: {
-        [MUTATION_TYPS.SET_USERINFO](state, value) {
+        [MUTATION_TYPS.SET_USERINFO](state: STATE, value: object): void {
             state.userinfo = value
         },
-        [MUTATION_TYPS.CLEAR_USERINFO](state) {
+        [MUTATION_TYPS.CLEAR_USERINFO](state: STATE): void {
             state.userinfo = {}
         }
     },
     actions: {
-        [ACTION_TYPES.SET_USERINFO](context, value) {
+        [ACTION_TYPES.SET_USERINFO](context: any, value: object): void {
             context.commit(MUTATION_TYPS.SET_USERINFO, value)
         },
-        [ACTION_TYPES.CLEAR_USERINFO](context) {
+        [ACTION_TYPES.CLEAR_USERINFO](context: any): void {
             context.commit(MUTATION_TYPS.CLEAR_USERINFO)
         }
     }
