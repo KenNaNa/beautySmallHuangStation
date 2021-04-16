@@ -1,6 +1,10 @@
 <template>
   <div class="center-wrap">
-    <self-introduction @click-right-arrow="clickRightArrow"></self-introduction>
+    <self-introduction
+      :account="account"
+      :introduction="introduction"
+      @click-right-arrow="clickRightArrow"
+    ></self-introduction>
 
     <!-- 我的专辑 -->
     <van-cell center class="same" title="我的专辑" is-link @click="toMyAlbum" />
@@ -22,6 +26,7 @@
 import { defineComponent, getCurrentInstance } from "vue";
 import { useRouter } from "vue-router";
 import SelfIntroduction from "@/components/SelfIntroduction/index.vue";
+import { getLocalStorage } from "@/utils/localStorage";
 
 export default defineComponent({
   name: "Center",
@@ -29,6 +34,8 @@ export default defineComponent({
     "self-introduction": SelfIntroduction,
   },
   setup(props) {
+    const account = JSON.parse(getLocalStorage("userInfo")).username;
+    const introduction = JSON.parse(getLocalStorage("userInfo")).username;
     const { ctx } = getCurrentInstance();
     const router = useRouter();
     const clickRightArrow = () => {
@@ -52,6 +59,8 @@ export default defineComponent({
       toMyAlbum,
       toMyCollection,
       toMyOrder,
+      account,
+      introduction,
     };
   },
 });
