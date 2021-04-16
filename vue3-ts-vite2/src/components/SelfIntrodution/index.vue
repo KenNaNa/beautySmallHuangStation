@@ -1,10 +1,10 @@
 <template>
   <div class="self-introduction-wrap">
     <img width="80" height="80" src="../../assets/img.jpg" />
-    <div class="text">
-      <span class="account">{{ account }}</span>
-      <span class="introduction">{{ introduction }}</span>
-    </div>
+    <!-- <div class="text">
+      <span class="account">账号：{{ account }}</span>
+      <span class="introduction">简介：{{ introduction }}</span>
+    </div> -->
     <van-icon name="arrow" size="24" @click="clickRight" />
   </div>
 </template>
@@ -18,7 +18,7 @@ export default defineComponent({
     },
     account: {
       type: String,
-      default: "账号：123123456",
+      default: "123123456",
     },
     introduction: {
       type: String,
