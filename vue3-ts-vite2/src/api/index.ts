@@ -27,9 +27,8 @@ export const toLogin = (data: Object): AxiosPromise => {
     return request.post('/login', data)
 }
 
-export default {
-    getBannerList,
-    getNewsList,
-    getNewsDetail,
-    toLogin
+
+
+export const isLogin = (): AxiosPromise => {
+    return request.get('/isLogin')
 }
