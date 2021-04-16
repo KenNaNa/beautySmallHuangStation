@@ -96,523 +96,109 @@
 - mongodb
 - mongoose
 
-### 后端项目目录
+### 微信授权登录
 
-- bin
-  - www
-- config
-  - session.config.js
+```html
+<view wx:if="{{isHide}}">
+    <view wx:if="{{canIUse}}" >
+        <view class='header'>
+            <image src='/images/wx_login.png'></image>
+        </view>
 
+        <view class='content'>
+            <view>申请获取以下权限</view>
+            <text>获得你的公开信息(昵称，头像等)</text>
+        </view>
 
+        <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+            授权登录
+        </button>
+    </view>
+    <view wx:else>请升级微信版本</view>
+</view>
 
-```js
-const sessionConfig = {
-    key: 'koa:sess',
-    /** (string) cookie key (default is koa:sess) cookie 的Name */
-    /** (number || 'session') maxAge in ms (default is 1 days) */
-    /** 'session' will result in a cookie that expires when session/browser is closed */
-    /** Warning: If a session cookie is stolen, this cookie will never expire */
-    maxAge: 86400000,
-    /** cookie 的过期时间 */
-    autoCommit: true,
-    /** (boolean) automatically commit headers (default true) */
-    overwrite: true,
-    /** (boolean) can overwrite or not (default true) */
-    httpOnly: true,
-    /** (boolean) httpOnly or not (default true) */
-    signed: true,
-    /** (boolean) signed or not (default true) */
-    rolling: false,
-    /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
-    renew: false,
-    /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
-};
-
-const keys = ["login secret"];
-
-module.exports = {
-    keys,
-    sessionConfig
-};
-```
-  - token.coonfig.js
-
-```js
-const tokenConfig = {
-    privateKey: 'login token'
-};
-
-module.exports = tokenConfig;
+<view wx:else>
+    <view>我的首页内容</view>
+</view>
 ```
 
-
-- controller
-- dbhelper
-  - dbconfig.js
-
-
-
 ```js
-const dbconfig = {
-    dbName: 'beautySmallHuangStation',
-    dbHost: 'mongodb://localhost:27017/',
-    useName: '',
-    passWrd: ''
-};
+//获取应用实例
+const app = getApp()
 
-module.exports = dbconfig;
-```
-
-  - dbconnect.js
-
-
-```js
-const mongoose = require('mongoose');
-const app = require('../app');
-const dbconfig = require('./dbconfig');
-// 链接数据库
-const dbName = dbconfig.dbName;
-const dbHost = dbconfig.dbHost;
-
-const dbconnect = (app) => {
-    mongoose.connect(`${dbHost}${dbName}`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => {
-        console.log("数据库链接成功");
-    }).catch(() => {
-        console.log('数据库连接失败');
-    });
-};
-
-module.exports = dbconnect;
-```
-
-- model
-  - banners.js
-
-
-```js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bannerSchema = new Schema({
-    id: {
-        type: String,
-        require: true
+Page({
+    data: {
+        //判断小程序的API，回调，参数，组件等是否在当前版本可用。
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        isHide: false
     },
-    images: {
-        type: String,
-        require: true
+
+    onLoad: function () {
+        var that = this;
+        // 查看是否授权
+        wx.getSetting({
+            success: function (res) {
+                if (res.authSetting['scope.userInfo']) {
+                    wx.getUserInfo({
+                        success: function (res) {
+                            // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
+                            // 根据自己的需求有其他操作再补充
+                            // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
+                            wx.login({
+                                success: res => {
+                                    // 获取到用户的 code 之后：res.code
+                                    console.log("用户的code:" + res.code);
+                                    // 可以传给后台，再经过解析获取用户的 openid
+                                    // 或者可以直接使用微信的提供的接口直接获取 openid ，方法如下：
+                                    // wx.request({
+                                    //     // 自行补上自己的 APPID 和 SECRET
+                                    //     url: 'https://api.weixin.qq.com/sns/jscode2session?appid=自己的APPID&secret=自己的SECRET&js_code=' + res.code + '&grant_type=authorization_code',
+                                    //     success: res => {
+                                    //         // 获取到用户的 openid
+                                    //         console.log("用户的openid:" + res.data.openid);
+                                    //     }
+                                    // });
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    // 用户没有授权
+                    // 改变 isHide 的值，显示授权页面
+                    that.setData({
+                        isHide: true
+                    });
+                }
+            }
+        });
     },
-    title: {
-        type: String,
-        require: true
-    },
-    imgs: {
-        type: Array,
-        default: Array,
-        require: true
-    },
-    desc: {
-        type: String,
-        require: true
-    }
-});
 
-module.exports = mongoose.model('Banners', bannerSchema);
-```
-  - user.js
-
-```js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
-    username: {
-        type: String,
-        require: true
-    },
-    password: {
-        type: String,
-        require: true
-    },
-    date: {
-        type: Date,
-        default: Date
-    }
-});
-
-module.exports = mongoose.model('User', userSchema);
-```
-
-
-- routes
-  - banners.js
-
-
-```js
-const router = require('koa-router')();
-const Banners = require('../model/banners');
-
-router.get('/banners', async ctx => {
-    const findBanners = await Banners.find({});
-    ctx.status = 200;
-    ctx.body = {
-        status: 200,
-        banners: findBanners
-    };
-});
-
-router.post('/detail', async ctx => {
-    const {
-        id
-    } = ctx.request.body;
-    const findOne = await Banners.find({
-        id
-    });
-
-    ctx.status = 200;
-    ctx.body = {
-        status: 200,
-        banners: findOne
-    };
-})
-
-
-module.exports = router;
-```
-
-  - index.js
-
-
-```js
-const router = require('koa-router')();
-const user = require('./user');
-const banners = require('./banners');
-const searchs = require('./searchs');
-router.prefix('/api');
-
-
-router.use('/user', user.routes(), user.allowedMethods());
-router.use('/banner', banners.routes(), banners.allowedMethods());
-router.use('/searchs', searchs.routes(), searchs.allowedMethods());
-module.exports = router;
-```
-  - search.js
-
-
-```js
-const router = require('koa-router')();
-const Banners = require('../model/banners');
-
-router.post('/search', async ctx => {
-    const {
-        keyword
-    } = ctx.request.body; // 拿到关键词
-
-    const reg = new RegExp(keyword, 'i'); // 不区分大小写
-    const title = {
-        $regex: reg
-    }
-    const findBanners = await Banners.find(keyword ? {
-        title
-    } : {});
-    ctx.status = 200;
-    ctx.body = {
-        status: 200,
-        banners: findBanners
-    };
-});
-
-module.exports = router;
-```
-
-  - user.js
-
-
-
-```js
-const router = require('koa-router')();
-const User = require('../model/user');
-const genToken = require('../utils/getToken');
-const verifyToken = require('../utils/verifyToken');
-/**
- * @route POST api/users/register
- * @desc 注册接口地址
- * @access 接口是公开的 即不需要token
- */
-router.post('/register', async ctx => {
-  console.log(ctx.request.body);
-  const findResult = await User.find({
-    username: ctx.request.body.username
-  });
-  console.log(findResult);
-  if (findResult.length > 0) {
-    ctx.status = 200;
-    ctx.body = {
-      status: 200,
-      message: "用户名已经被注册过了"
-    };
-  } else {
-    const {
-      username,
-      password,
-      date
-    } = ctx.request.body
-    const newUser = new User({
-      username,
-      password,
-      date
-    });
-    await newUser.save().then(user => {
-      let obj = {
-        username: user.username,
-        date: user.date,
-        userid: user._id
-      }
-      ctx.status = 200;
-      ctx.body = {
-        status: 200,
-        message: '注册成功',
-        userInfo: obj
-      };
-    }).catch(() => {
-      ctx.body = {
-        status: 200,
-        message: '注册失败'
-      };
-    });
-  }
-})
-
-
-/**
- * @route POST api/users/login
- * @desc 登录接口地址 返回token
- * @access 接口是公开的 即不需要token
- */
-router.post("/login", async ctx => {
-  const {
-    username,
-    password
-  } = ctx.request.body
-  const findResult = await User.find({
-    username
-  });
-
-  console.log(findResult);
-  // 判断是否存在该用户
-  if (findResult.length == 0) {
-    // status
-    ctx.status = 200;
-    ctx.body = {
-      status: 404,
-      message: '用户不存在'
-    }
-  } else {
-    // 验证密码是否正确
-    const userInfo = {
-      username,
-      password
-    };
-    const token = genToken(userInfo);
-    var res = await User.find({
-      password
-    });
-    if (res.length > 0) {
-      let obj = {
-        username: findResult[0].username,
-        date: findResult[0].date,
-        userid: findResult[0]._id
-      }
-      // 返回用户信息
-      ctx.status = 200;
-      ctx.body = {
-        status: 200,
-        message: "登录成功",
-        userInfo: obj,
-        token
-      };
-    } else {
-      ctx.status = 200;
-      ctx.body = {
-        status: 400,
-        message: "密码错误"
-      };
-    }
-  }
-});
-
-router.get('/isLogin', async ctx => {
-  try {
-    const token = ctx.get('Authorization');
-    let userInfo = {};
-    if (token === '') {
-      ctx.status = 200;
-      ctx.body = {
-        status: 0,
-        message: '未登录'
-      };
-    } else {
-      try {
-        userInfo = verifyToken(token);
-        ctx.body = {
-          status: 1,
-          message: '已登录',
-          userInfo,
-          isLogin: true
-        };
-      } catch (error) {
-        ctx.body = {
-          status: 0,
-          message: '未登录',
-          userInfo,
-          isLogin: false
+    bindGetUserInfo: function (e) {
+        if (e.detail.userInfo) {
+            //用户按了允许授权按钮
+            var that = this;
+            // 获取到用户的信息了，打印到控制台上看下
+            console.log("用户的信息如下：");
+            console.log(e.detail.userInfo);
+            //授权成功后,通过改变 isHide 的值，让实现页面显示出来，把授权页面隐藏起来
+            that.setData({
+                isHide: false
+            });
+        } else {
+            //用户按了拒绝按钮
+            wx.showModal({
+                title: '警告',
+                content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+                showCancel: false,
+                confirmText: '返回授权',
+                success: function (res) {
+                    // 用户没有授权成功，不需要改变 isHide 的值
+                    if (res.confirm) {
+                        console.log('用户点击了“返回授权”');
+                    }
+                }
+            });
         }
-      }
     }
-  } catch (err) {
-    throw new Error(err);
-  }
-});
-
-module.exports = router;
-```
-
-- utils
-  - genSession.js
-
-
-
-```js
-const session = require('koa-session');
-const config = require('../config/session.config');
-const genSession = (app) => {
-    app.keys = config.keys;
-    app.use(session(config.sessionConfig, app));
-};
-
-module.exports = genSession;
-```
-
-  - getToken.js
-
-
-
-```js
-const jwt = require('jsonwebtoken');
-const tokenConfig = require('../config/token.config');
-
-const genToken = (userInfo) => {
-    return jwt.sign(userInfo, tokenConfig.privateKey, {
-        expiresIn: '7d'
-    });
-};
-
-module.exports = genToken;
-```
-  - verifyToken.js
-
-```js
-const jwt = require('jsonwebtoken');
-const tokenConfig = require('../config/token.config');
-
-const verifyToken = (token) => {
-    return jwt.verify(token.split(' ')[1], tokenConfig.privateKey);
-}
-
-module.exports = verifyToken;
-```
-
-
-- app.js
-
-
-
-```js
-const Koa = require('koa')
-const app = new Koa()
-const views = require('koa-views')
-const json = require('koa-json')
-const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
-
-const router = require('./routes/index')
-// error handler
-onerror(app)
-
-// middlewares
-app.use(bodyparser({
-  enableTypes: ['json', 'form', 'text']
-}))
-app.use(json())
-app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
-
-app.use(views(__dirname + '/views', {
-  extension: 'pug'
-}))
-
-// logger
-app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
-
-// routes
-app.use(router.routes()).use(router.allowedMethods())
-
-// error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
-
-module.exports = app;
 ```
-
-- package.json
-
-
-
-```json
-{
-  "name": "koa-mongodb-end",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "start": "node bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
-    "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "debug": "^4.1.1",
-    "jsonwebtoken": "^8.5.1",
-    "koa": "^2.7.0",
-    "koa-bodyparser": "^4.2.1",
-    "koa-convert": "^1.2.0",
-    "koa-json": "^2.0.2",
-    "koa-logger": "^3.2.0",
-    "koa-onerror": "^4.1.0",
-    "koa-router": "^7.4.0",
-    "koa-session": "^6.2.0",
-    "koa-static": "^5.0.0",
-    "koa-views": "^6.2.0",
-    "mongoose": "^5.12.3",
-    "pug": "^2.0.3"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
-  }
-}
-
-```
-
-
-
-
-
-
-
