@@ -21,3 +21,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+vue3-ts-vite2/node_modules
+node_modules
+node-koa/node_modules

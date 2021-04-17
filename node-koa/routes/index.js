@@ -1,7 +1,7 @@
 const router = require('koa-router')();
 const user = require('./user');
-const banners = require('./banners');
-const searchs = require('./searchs');
+const banners = require('./banner');
+const searchs = require('./search');
 router.prefix('/api');
 
 
