@@ -1,8 +1,6 @@
 # beautySmallHuangStation
 
-看这里，胸太大了
 
-![](https://lh3.googleusercontent.com/proxy/g3UarglUxpOovTXAA6eUfJxPYG2hQ8Kw4nUp16mkuQ3mpINipYv-2PXT1HWRvoVphhMfeo1R0VqJz-oWZnhdsQn9royFtPUgaums)
 
 # 学习资料
 
