@@ -112,6 +112,11 @@
 - 数据 mock
 - 兼容 PC、平板和手机
 
+已将脚手架和一些通用的部分提取出来，方便单独使用，相关文档地址：
+
+- convue（基于 vite 的类似于 umi.js 的插件）: https://ziping-li.github.io/convue
+- convue-lib（通用组件、样式、工具方法）: https://ziping-li.github.io/convue-lib
+
 
 ### 微信授权登录
 
