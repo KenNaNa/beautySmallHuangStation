@@ -94,6 +94,25 @@
 - mongodb
 - mongoose
 
+### 后台管理系统
+
+用的以下这个开源模板
+
+[ant-design-vue3-admin](https://github.com/ziping-li/ant-design-vue3-admin)
+
+[模板预览](https://ziping-li.github.io/ant-design-vue3-admin/#/dashboard/overview)
+
+
+一个基于 Vite2 + Vue3 + Typescript + tsx + Ant Design Vue 的后台管理系统模板，支持响应式布局，在 PC、平板和手机上均可使用。
+
+- 最新的技术栈
+- 统一的技术规范
+- 权限方案（路由，菜单，操作）
+- 支持多语言
+- 数据 mock
+- 兼容 PC、平板和手机
+
+
 ### 微信授权登录
 
 ```html
