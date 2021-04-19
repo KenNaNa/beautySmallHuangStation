@@ -116,3 +116,11 @@
 
 - convue（基于 vite 的类似于 umi.js 的插件）: https://ziping-li.github.io/convue
 - convue-lib（通用组件、样式、工具方法）: https://ziping-li.github.io/convue-lib
+
+# 目标
+
+- 跟着上面这个后端模板的提交代码记录，重新搭建一遍框架
+- 实现用户配置列表
+- 专辑列表
+- 收藏列表
+- 修改账户密码
