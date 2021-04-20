@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><!-- TITLE --></title>
-    <!-- HEAD -->
-  </head>
-  <body>
-    <!-- APP -->
-    <script type="module">
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- 兼容性设置 -->
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+  <!-- 添加 logo -->
+  <link rel="icon"
+        href="/logo.png">
+  <title>
+
+
+    <!-- TITLE -->
+  </title>
+  <!-- HEAD -->
+</head>
+
+<body>
+  <!-- APP -->
+  <script type="module">
       import { createApp } from 'vue';
       import App from './src/App';
       import convue from 'convue-package';
-
+      import {createProdMockServer} from 'vite-plugin-mock/es/createProdMockServer';
+      import userMock from './mock/user.ts';
       const app = createApp(App);
-
+      createProdMockServer([...userMock]);
       app.use(convue);
       app.mount('#app');
     </script>
-  </body>
+</body>
+
 </html>
