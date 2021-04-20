@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "removeComments": false,
     "strictNullChecks": true,
     "moduleResolution": "node",
@@ -15,7 +18,8 @@
     "lib": ["dom", "es2018"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
     "skipLibCheck": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
   },
   "exclude": ["./node_modules", "./dist"]
 }
