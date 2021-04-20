@@ -1,12 +1,12 @@
 {
-  "name": "convue",
+  "name": "small-beauty-huang-station-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "一个基于 Vite2 + Vue3 + Typescript + tsx + Ant Design Vue 的后台管理系统模板，支持响应式布局，在 PC、平板和手机上均可使用",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint --ext .js,.tsx src/",
+    "lint": "eslint --ext .ts,.tsx src/",
     "lint:fix": "yarn run lint --fix"
   },
   "husky": {
@@ -15,7 +15,7 @@
     }
   },
   "lint-staged": {
-    "*.{vue,js}": [
+    "*.{tsx,ts}": [
       "eslint --fix",
       "git add"
     ]
@@ -25,6 +25,9 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
+    "@types/highlight.js": "^10.1.0",
+    "@types/js-cookie": "^2.2.6",
+    "@types/uuid": "^8.3.0",
     "@vitejs/plugin-vue": "^1.1.2",
     "@vitejs/plugin-vue-jsx": "^1.0.2",
     "@vue/babel-plugin-jsx": "^1.0.2",
@@ -33,7 +36,7 @@
     "@vuedx/typescript-plugin-vue": "^0.6.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "convue": "^1.2.4",
+    "convue": "1.2.4",
     "css-loader": "^4.2.1",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.2.0",
@@ -52,14 +55,33 @@
     "ts-loader": "^8.0.4",
     "typescript": "^4.1.3",
     "url-loader": "^4.1.0",
-    "vite": "^2.0.0-beta.50",
+    "vite": "^2.0.0-beta.69",
+    "vite-plugin-mock": "^2.2.0",
     "vue-loader": "^16.0.0-beta.7"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.3.14",
+    "@convue-lib/formatted": "^0.1.20",
+    "@convue-lib/otp-input": "^0.1.20",
+    "@convue-lib/otp-send": "^0.1.20",
+    "@convue-lib/phone": "0.1.20",
+    "@convue-lib/scroll": "0.1.20",
+    "@convue-lib/styles": "^0.1.20",
+    "@convue-lib/utils": "^0.1.20",
+    "@toast-ui/editor": "^2.5.1",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^1.0.0",
+    "ant-design-vue": "^2.0.1",
+    "axios": "^0.21.1",
+    "highlight.js": "^10.6.0",
+    "i18next": "^19.9.2",
+    "js-cookie": "^2.2.1",
+    "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
+    "uuid": "^8.3.2",
     "vue": "^3.0.5",
     "vue-i18n": "^9.0.0-rc.6",
     "vue-router": "4",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "wangeditor": "^4.6.9"
   }
 }
