@@ -1,9 +1,12 @@
-import { defineComponent } from 'vue';
-
+import { defineComponent, onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   setup() {
-    return () => (
-      <div>Convue</div>
-    );
+    const router = useRouter();
+    onBeforeMount(() => {
+      router.replace('/dashboard/overview');
+    });
+
+    return () => <div></div>;
   },
 });
