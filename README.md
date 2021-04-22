@@ -36,6 +36,8 @@
 
 [hkc452/slamdunk-the-vue3](https://hkc452.github.io/slamdunk-the-vue3/)
 
+[组件开发设计规则](https://lucifier129.github.io/ant-design/docs/spec/colors)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
