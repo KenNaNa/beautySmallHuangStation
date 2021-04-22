@@ -42,6 +42,8 @@
 
 [uniapp实现支付功能](https://blog.csdn.net/weixin_37787674/article/details/103012041)
 
+[uniapp实现支付功能](https://www.kancloud.cn/xiaoyulive/uniapp/1848880)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
