@@ -44,6 +44,8 @@
 
 [uniapp实现支付功能](https://www.kancloud.cn/xiaoyulive/uniapp/1848880)
 
+[js-uni-app](https://shengchangwei.github.io/js-uni-app/)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
