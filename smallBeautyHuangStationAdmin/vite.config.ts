@@ -10,15 +10,9 @@ import {
   i18nUseCookie,
   mockServerProdEnable,
 } from './src/config/constants';
-import path from 'path';
 
 export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src')
-      }
-    },
     base,
     css: {
       preprocessorOptions: {
@@ -34,7 +28,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     plugins: [
       ...convue({
         head: {
-          title: '美女小黄站后台管理',
+          title: 'Ant Design Admin',
         },
         loading: primaryColor,
         progress: {
