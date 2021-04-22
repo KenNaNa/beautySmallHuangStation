@@ -17,7 +17,7 @@ export default ({ t }: any, inject: any) => {
 
     request.interceptors.response.use(
         function (response) {
-            if (response?.data?.code !== "S_00000") {
+            if (response?.data?.code !== "S_0000") {
                 message.error(t(`ApiError.${response?.data?.code}`));
                 return Promise.reject(response);
             }
@@ -25,6 +25,7 @@ export default ({ t }: any, inject: any) => {
             return response?.data;
         },
         async function (error) {
+            console.log("error===>", error)
             return Promise.reject(error);
         }
     );
