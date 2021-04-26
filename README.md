@@ -48,6 +48,8 @@
 
 [Vue3教程：Vue 3 + Element Plus + Vite 2 的后台管理系统开源啦](https://www.cnblogs.com/han-1034683568/p/14616032.html)
 
+[57code/vite2-in-action](https://github.com/57code/vite2-in-action)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
