@@ -54,6 +54,8 @@
 
 [前端职业规划（转）](https://www.jianshu.com/p/ffb5606d233d)
 
+[visual-drag-demo](https://github.com/woai3c/visual-drag-demo)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
