@@ -24,12 +24,12 @@ export default defineComponent({
         const { t } = useI18n();
         const router = useRouter();
         const { state, dispatch } = useStore();
-
+        console.log("login====>", state, "@@loading===>", state['@@loading'])
         const loginForm = ref(null);
         const loading = computed(() => state['@@loading'].effects[ActionTypes.LOGIN]);
         const formState: Record<string, string> = reactive({
-            username: '',
-            password: '',
+            username: 'admin',
+            password: '123456',
         });
         const rules = reactive({
             username: [
