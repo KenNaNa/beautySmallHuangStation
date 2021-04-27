@@ -62,6 +62,8 @@
 
 [前端学习路线](https://objtube.github.io/front-end-roadmap/#/)
 
+[关于前端数据可视化的一些理解——浅析](https://github.com/Hibop/Hibop.github.io/issues/59)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
