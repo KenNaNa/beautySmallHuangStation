@@ -66,6 +66,8 @@
 
 [vueCli3搭建的vue-vuex-router开发模版，PC、Mobile两个分支开箱即用，支持scss、vuex、axios、多语言、过滤器、仓库快速提交等](https://github.com/wangyupo/vue-vuex-router)
 
+[UNI-APP微信小程序快速开发模板，集成封装了路由，网络请求，本地存储，自定义组件等和一些小程序开发心得。](https://github.com/yinchengnuo/templateWxappUniapp)
+
 # 网站简介
 
 一个专注于分享美女小黄图的网站，一个有趣的网站，一个具有后端管理系统，小程序一整套的网站。
